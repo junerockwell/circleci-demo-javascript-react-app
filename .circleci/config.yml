@@ -1,5 +1,13 @@
 version: 2 # use CircleCI 2.0
 jobs:
+  install:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies with NPM
+          command: npm install
   build:
     docker:
       - image: circleci/node:10
@@ -35,4 +43,7 @@ workflows:
   version: 2
   Build and Test:
     jobs:
-      - build
+      - install
+      - build:
+          requires:
+            - install
