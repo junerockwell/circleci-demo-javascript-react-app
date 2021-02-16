@@ -43,6 +43,6 @@ workflows:
   Build and Test:
     jobs:
       - install
+      - build
         requires:
           - install
-      - build
